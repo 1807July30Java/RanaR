@@ -73,7 +73,7 @@ public class Driver {
 		
 		else if(typeOfNumber.equals("long")) {
 			for(int i = 2; i < userInputWords.length; i++) {
-				Integer temp = Integer.parseInt(userInputWords[i]);
+				Long temp = Long.parseLong(userInputWords[i]);
 				longArray.add(temp.longValue());
 			}
 			Calculator newCalc = new Calculator(); 

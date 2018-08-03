@@ -82,7 +82,7 @@ public class Driver {
 		
 		else if(typeOfNumber.equals("float")) {
 			for(int i = 2; i < userInputWords.length; i++) {
-				Integer temp = Integer.parseInt(userInputWords[i]);
+				Double temp = Double.parseDouble(userInputWords[i]);
 				floatArray.add(temp.floatValue());
 			}
 			Calculator newCalc = new Calculator(); 
@@ -91,7 +91,7 @@ public class Driver {
 		
 		else if(typeOfNumber.equals("double")) {
 			for(int i = 2; i < userInputWords.length; i++) {
-				Integer temp = Integer.parseInt(userInputWords[i]);
+				Double temp = Double.parseDouble(userInputWords[i]);
 				doubleArray.add(temp.doubleValue());
 			}
 			Calculator newCalc = new Calculator(); 

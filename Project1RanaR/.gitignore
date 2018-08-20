@@ -247,4 +247,4 @@ target/
 /connection.properties
 
 #ignore log file
-/src/log.txt
+/log.txt

@@ -18,7 +18,11 @@ public class Driver {
 		
 		Connection con = ConnectionUtil.getConnectionFromFile(filename);
 		System.out.println(con.toString());
-	
+		
+		/*
+		EmployeeDAO em = new EmployeeDAOImpl();
+		Employee ne = new Employee();
+		*/
 	}
 
 }

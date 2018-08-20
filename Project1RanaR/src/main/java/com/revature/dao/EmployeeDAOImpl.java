@@ -2,6 +2,7 @@ package com.revature.dao;
 
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,6 +19,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	private static String filename = "connection.properties";
 	private static Logger log = Logger.getRootLogger();
 	
+	@Override
 	public List<Employee> getEmployees() {
 		List<Employee> ul = new ArrayList<Employee>();
 		try(Connection con = ConnectionUtil.getConnectionFromFile(filename)){
@@ -44,18 +46,75 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		return ul;
 	}
 
+	@Override
 	public Employee getEmployeeAccountById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Employee e = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM EMPLOYEE WHERE EMPLOYEE_ID = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			if (rs.next()) {
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+				String firstName = rs.getString("FIRSTNAME");
+				String lastName = rs.getString("LASTNAME");
+				String username = rs.getString("USERNAME");
+				String password = rs.getString("PASSWORD");
+				int employeeManager = rs.getInt("EMPLOYEE_MANAGER");
+				int managerOrNot = rs.getInt("MANAGER_YORN");
+				String employeeEmail = rs.getString("EMPLOYEE_EMAIL");
+				e = new Employee(employeeId, firstName, lastName, username, password, employeeManager, managerOrNot, employeeEmail);
+				log.info("retrieved user with id "+id);
+			} else {
+				log.warn("no matching user found");
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		return e;
 	}
 
-	public boolean saveEmployeeAccount(Employee e) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+	@Override
 	public boolean isExistingEmployee(Employee e) {
-		// TODO Auto-generated method stub
+		PreparedStatement pstmt = null;
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM EMPLOYEE WHERE USERNAME = ? AND PASSWORD = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, e.getUsername().trim());
+			pstmt.setString(2, e.getPassword().trim());
+			
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			if (rs.next()) {
+				int id = rs.getInt("EMPLOYEE_ID");
+				e.setEmployeeID(id);
+				e.setManager(rs.getInt("MANAGER_YORN"));
+				log.info("Retrieved user with id "+ id);
+				
+				return true;
+			} else {
+				log.warn("No matching user found");
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
 		return false;
 	}
 

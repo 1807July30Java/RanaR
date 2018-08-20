@@ -3,7 +3,7 @@ package com.revature.beans;
 public class Employee {
 	
 	public Employee(int employeeID, String firstName, String lastName, String username, String password,
-			int employeeManager, boolean isManager, String employeeEmail) {
+			int employeeManager, int isManager, String employeeEmail) {
 		super();
 		this.employeeID = employeeID;
 		this.firstName = firstName;
@@ -21,7 +21,7 @@ public class Employee {
 	private String username;
 	private String password;
 	private int employeeManager;
-	private boolean isManager;
+	private int isManager;
 	private String employeeEmail;
 	
 	public int getEmployeeID() {
@@ -60,10 +60,10 @@ public class Employee {
 	public void setEmployeeManager(int employeeManager) {
 		this.employeeManager = employeeManager;
 	}
-	public boolean isManager() {
+	public int isManager() {
 		return isManager;
 	}
-	public void setManager(boolean isManager) {
+	public void setManager(int isManager) {
 		this.isManager = isManager;
 	}
 	public String getEmployeeEmail() {
@@ -73,20 +73,6 @@ public class Employee {
 		this.employeeEmail = employeeEmail;
 	}
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((employeeEmail == null) ? 0 : employeeEmail.hashCode());
-		result = prime * result + employeeID;
-		result = prime * result + employeeManager;
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + (isManager ? 1231 : 1237);
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((username == null) ? 0 : username.hashCode());
-		return result;
-	}
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

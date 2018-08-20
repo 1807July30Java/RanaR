@@ -230,8 +230,7 @@ The time should be accurate to the second without having to reload the page.
 function currentTime(){
   var time = setInterval(function(){
     var timeHeader = document.getElementById("currentTime");
-    var currTime = new Date(Date.now());
-    timeHeader.innerText = currTime.toLocaleString();
+    timeHeader.innerText = new Date(Date.now()).toLocaleString();
   }, 1000);
 };
 window.onload = function(){

@@ -6,6 +6,12 @@ public class Employee {
 		super();
 	}
 	
+	public Employee(String username, String password) {
+		super();
+		this.username = username;
+		this.password = password;
+	}
+
 	public Employee(int employeeID, String firstName, String lastName, String username, String password,
 			int employeeManager, int isManager, String employeeEmail) {
 		super();
@@ -64,10 +70,10 @@ public class Employee {
 	public void setEmployeeManager(int employeeManager) {
 		this.employeeManager = employeeManager;
 	}
-	public int isManager() {
+	public int getIsManager() {
 		return isManager;
 	}
-	public void setManager(int isManager) {
+	public void setIsManager(int isManager) {
 		this.isManager = isManager;
 	}
 	public String getEmployeeEmail() {

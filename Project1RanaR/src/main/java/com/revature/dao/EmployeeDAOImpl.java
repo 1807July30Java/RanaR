@@ -83,6 +83,44 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 		return e;
 	}
+	
+	@Override
+	public Employee getEmployeeAccountByUserName(String empUsername) {
+		Employee e = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM EMPLOYEE WHERE USERNAME = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, empUsername);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			if (rs.next()) {
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+				String firstName = rs.getString("FIRSTNAME");
+				String lastName = rs.getString("LASTNAME");
+				String username = rs.getString("USERNAME");
+				String password = rs.getString("PASSWORD");
+				int employeeManager = rs.getInt("EMPLOYEE_MANAGER");
+				int managerOrNot = rs.getInt("MANAGER_YORN");
+				String employeeEmail = rs.getString("EMPLOYEE_EMAIL");
+				e = new Employee(employeeId, firstName, lastName, username, password, employeeManager, managerOrNot, employeeEmail);
+				log.info("retrieved user with id "+ empUsername);
+			} else {
+				log.warn("no matching user found");
+			}
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		return e;
+	}
 
 	@Override
 	public boolean isExistingEmployee(Employee e) {
@@ -101,7 +139,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 			if (rs.next()) {
 				int id = rs.getInt("EMPLOYEE_ID");
 				e.setEmployeeID(id);
-				e.setManager(rs.getInt("MANAGER_YORN"));
+				e.setIsManager(rs.getInt("MANAGER_YORN"));
 				log.info("Retrieved user with id "+ id);
 				
 				return true;

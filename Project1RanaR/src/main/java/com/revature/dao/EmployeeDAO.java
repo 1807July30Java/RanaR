@@ -9,4 +9,5 @@ public interface EmployeeDAO {
 	public Employee getEmployeeAccountById(int id);
 	public boolean isExistingEmployee(Employee e);
 	public Employee getEmployeeAccountByUserName(String empUsername);
+	public List<Employee> getAllEmployeesUnderManager(String managerUserName);
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.revature.beans.Employee;
 import com.revature.dao.EmployeeDAO;
@@ -22,6 +23,10 @@ public class Driver {
 		/*
 		EmployeeDAO em = new EmployeeDAOImpl();
 		Employee ne = new Employee();
+		List<Employee> eList = new ArrayList<>();
+		ne = em.getEmployeeAccountByUserName("john12");
+		eList = em.getAllEmployeesUnderManager("john12");
+		System.out.println(eList);
 		*/
 	}
 

@@ -155,5 +155,44 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 		return false;
 	}
+
+	@Override
+	public List<Employee> getAllEmployeesUnderManager(String managerUserName) {
+		List<Employee> eList = new ArrayList<Employee>();
+		Employee e = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM EMPLOYEE WHERE EMPLOYEE_MANAGER = (SELECT EMPLOYEE_ID FROM EMPLOYEE WHERE USERNAME = ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, managerUserName);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			while (rs.next()) {
+				int employeeId = rs.getInt("EMPLOYEE_ID");
+				String firstName = rs.getString("FIRSTNAME");
+				String lastName = rs.getString("LASTNAME");
+				String username = rs.getString("USERNAME");
+				String password = rs.getString("PASSWORD");
+				int employeeManager = rs.getInt("EMPLOYEE_MANAGER");
+				int managerOrNot = rs.getInt("MANAGER_YORN");
+				String employeeEmail = rs.getString("EMPLOYEE_EMAIL");
+				e = new Employee(employeeId, firstName, lastName, username, password, employeeManager, managerOrNot, employeeEmail);
+				eList.add(e);
+			} 
+			
+			con.close();
+
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+		return eList;
+	}
 	
 }

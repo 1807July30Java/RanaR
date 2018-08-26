@@ -45,4 +45,14 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateReimbursementRequestServlet</display-name>
+    <servlet-name>CreateReimbursementRequestServlet</servlet-name>
+    <servlet-class>com.revature.servlets.CreateReimbursementRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateReimbursementRequestServlet</servlet-name>
+    <url-pattern>/crrs</url-pattern>
+  </servlet-mapping>
 </web-app>

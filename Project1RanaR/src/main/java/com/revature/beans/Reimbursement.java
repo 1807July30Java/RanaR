@@ -1,6 +1,6 @@
 package com.revature.beans;
 
-import java.sql.Blob;
+import java.io.InputStream;
 
 public class Reimbursement {
 	private int reimbursementID;
@@ -8,10 +8,14 @@ public class Reimbursement {
 	private double reimbursementAmount;
 	private int reimbursementStatus;
 	private String reimbursementDescription;
-	Blob reimbursementTicketImg;
+	private InputStream reimbursementTicketImg;
 	
+	public Reimbursement() {
+		super();
+	}
+
 	public Reimbursement(int reimbursementID, int employeeID, double reimbursementAmount, int reimbursementStatus, String reimbursementDescription,
-			Blob reimbursementTicketImg) {
+			InputStream reimbursementTicketImg) {
 		super();
 		this.reimbursementID = reimbursementID;
 		this.employeeID = employeeID;
@@ -61,11 +65,11 @@ public class Reimbursement {
 		this.reimbursementDescription = reimbursementDescription;
 	}
 
-	public Blob getReimbursementTicketImg() {
+	public InputStream getReimbursementTicketImg() {
 		return reimbursementTicketImg;
 	}
 
-	public void setReimbursementTicketImg(Blob reimbursementTicketImg) {
+	public void setReimbursementTicketImg(InputStream reimbursementTicketImg) {
 		this.reimbursementTicketImg = reimbursementTicketImg;
 	}
 	

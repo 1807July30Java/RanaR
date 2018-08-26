@@ -1,6 +1,7 @@
 package com.revature.dao;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,7 +41,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				double reimbursementAmount = rs.getDouble("REIMBURSEMENT_AMOUNT");
 				int reimbursementStatus = rs.getInt("REIMBURSEMENT_STATUS");
 				String reimbursementDescription = rs.getString("REIMBURSEMENT_DESCRIPTION");
-				Blob reimbursementTicketImg = rs.getBlob("REQUEST_TICKET_IMG");
+				Blob reimbursementTicketImgBlob = rs.getBlob("REQUEST_TICKET_IMG");
+				InputStream reimbursementTicketImg = reimbursementTicketImgBlob.getBinaryStream();
 				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription, reimbursementTicketImg);
 				reimList.add(re);
 			}

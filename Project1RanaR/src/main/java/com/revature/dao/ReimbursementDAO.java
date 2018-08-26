@@ -6,7 +6,7 @@ import com.revature.beans.Reimbursement;
 
 public interface ReimbursementDAO {
 	public List<Reimbursement> getAllReimbursementRequestsForEmployee(int empID);
-	public void saveReimbursementRequest(Reimbursement ticket);
-	public void approveReimbursementRequest(int reimbursementID);
-	public void declineReimbursementRequest(int reimbursementID);
+	public boolean saveReimbursementRequest(Reimbursement ticket);
+	public boolean approveReimbursementRequest(int reimbursementID);
+	public boolean declineReimbursementRequest(int reimbursementID);
 }

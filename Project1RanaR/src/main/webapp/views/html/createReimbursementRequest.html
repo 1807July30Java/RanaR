@@ -14,34 +14,34 @@
 	  </button>
 	  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
 	    <div class="navbar-nav">
-	      <a class="nav-item nav-link active" href="crrs">Reimbursement Requests <span class="sr-only">(current)</span></a>
-	      <a class="nav-item nav-link active" href="logout">logout</a>
+	      <a class="nav-item nav-link active" href="crrs">Create New Reimbursement Request <span class="sr-only">(current)</span></a>
+	      <a class="nav-item nav-link active" href="logout">Logout</a>
 	    </div>
 	  </div>
 	</nav>
 	
-	<form action="crrs" method="post" enctype="multipart/form-data">
-	  <div>
-	  	<label for="reimbursementAmount">Enter the amount you wish to be reimbursed:</label>
-	    <input type="number" name="reimbursementAmount" min="1">
-	    <br>
-	    <label for="reimbursementDesc">Reason for reimbursement:</label>
-	    <br>
-	    <textarea name="reimbursementDesc" style="width:500px; height:100px">
-			
-		</textarea>
-	    <br>
-	    <label for="reimbursementReceipt">Choose image to upload</label>
-	    <br>
-	    <input type="file" id="reimbursementReceipt" name="reimbursementReceipt">
-	  </div>
-	  <div>
-	  	<br>
-	    <button>Submit</button>
-	  </div>
-	</form>
-	
-
+	<div class="container">
+		<form action="crrs" method="post" enctype="multipart/form-data">
+		  <div>
+		  	<label for="reimbursementAmount">Enter the amount you wish to be reimbursed:</label>
+		    <input type="number" name="reimbursementAmount" min="1">
+		    <br>
+		    <label for="reimbursementDesc">Reason for reimbursement:</label>
+		    <br>
+		    <textarea name="reimbursementDesc" style="width:500px; height:100px">
+				
+			</textarea>
+		    <br>
+		    <label for="reimbursementReceipt">Choose image to upload</label>
+		    <br>
+		    <input type="file" id="reimbursementReceipt" name="reimbursementReceipt">
+		  </div>
+		  <div>
+		  	<br>
+		    <button>Submit</button>
+		  </div>
+		</form>
+	</div>
 	
 </body>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

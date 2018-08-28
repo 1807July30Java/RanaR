@@ -25,6 +25,16 @@ public class Reimbursement {
 		this.reimbursementTicketImg = reimbursementTicketImg;
 	}
 
+	public Reimbursement(int reimbursementID, int employeeID, double reimbursementAmount, int reimbursementStatus,
+			String reimbursementDescription) {
+		super();
+		this.reimbursementID = reimbursementID;
+		this.employeeID = employeeID;
+		this.reimbursementAmount = reimbursementAmount;
+		this.reimbursementStatus = reimbursementStatus;
+		this.reimbursementDescription = reimbursementDescription;
+	}
+
 	public int getReimbursementID() {
 		return reimbursementID;
 	}

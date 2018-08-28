@@ -55,4 +55,14 @@
     <servlet-name>CreateReimbursementRequestServlet</servlet-name>
     <url-pattern>/crrs</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReturnImageFromDbServlet</display-name>
+    <servlet-name>ReturnImageFromDbServlet</servlet-name>
+    <servlet-class>com.revature.servlets.ReturnImageFromDbServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReturnImageFromDbServlet</servlet-name>
+    <url-pattern>/rifds</url-pattern>
+  </servlet-mapping>
 </web-app>

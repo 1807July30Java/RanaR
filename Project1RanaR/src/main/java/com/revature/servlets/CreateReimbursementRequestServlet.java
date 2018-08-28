@@ -42,16 +42,21 @@ public class CreateReimbursementRequestServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		double reimbursementAmount = Double.parseDouble(request.getParameter("reimbursementAmount"));
-		String reimbursementDesc = request.getParameter("reimbursementDesc");
-		Part filepart = request.getPart("reimbursementReceipt");
-		InputStream fileContent = filepart.getInputStream();
-		int empID = (int) session.getAttribute("id");
-		
-		AddReimbursementTicketToDbService arttds = new AddReimbursementTicketToDbService();
-		arttds.addTicketToDB(empID, reimbursementAmount, reimbursementDesc, fileContent);
-		
-		response.sendRedirect("crrs");
+		if(session != null) {
+			double reimbursementAmount = Double.parseDouble(request.getParameter("reimbursementAmount"));
+			String reimbursementDesc = request.getParameter("reimbursementDesc");
+			Part filepart = request.getPart("reimbursementReceipt");
+			InputStream fileContent = filepart.getInputStream();
+			int empID = (int) session.getAttribute("id");
+			
+			AddReimbursementTicketToDbService arttds = new AddReimbursementTicketToDbService();
+			arttds.addTicketToDB(empID, reimbursementAmount, reimbursementDesc, fileContent);
+			
+			response.sendRedirect("crrs");
+		}
+		else {
+			response.sendRedirect("login");
+		}
 	}
 
 }

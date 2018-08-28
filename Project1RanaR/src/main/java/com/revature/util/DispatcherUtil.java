@@ -14,7 +14,10 @@ public class DispatcherUtil {
 				if (get.equals("manager")) {
 					return om.writeValueAsString(reums.returnAllEmployeesUnderManager(username));
 				}
-			
+			}
+			if(entity.equals("pending")) {
+					return om.writeValueAsString(reums.returnPendingRequests(Integer.parseInt(get)));
+				
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

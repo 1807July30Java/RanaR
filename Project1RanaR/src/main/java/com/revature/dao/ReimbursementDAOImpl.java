@@ -41,9 +41,8 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 				double reimbursementAmount = rs.getDouble("REIMBURSEMENT_AMOUNT");
 				int reimbursementStatus = rs.getInt("REIMBURSEMENT_STATUS");
 				String reimbursementDescription = rs.getString("REIMBURSEMENT_DESCRIPTION");
-				Blob reimbursementTicketImgBlob = rs.getBlob("REQUEST_TICKET_IMG");
-				InputStream reimbursementTicketImg = reimbursementTicketImgBlob.getBinaryStream();
-				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription, reimbursementTicketImg);
+				
+				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription);
 				reimList.add(re);
 			}
 			
@@ -136,5 +135,145 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 		}
 		return false;
 	}
+
+	@Override
+	public List<Reimbursement> getPendingReimbursementRequests(int empID) {
+		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
+		Reimbursement re = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM REIMBURSEMENT_REQUESTS WHERE EMPLOYEE_ID = ? AND REIMBURSEMENT_STATUS = 0";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empID);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			while (rs.next()) {
+				int reimbursementID = rs.getInt("REIMBURSEMENT_REQUEST_ID");
+				int employeeID = rs.getInt("EMPLOYEE_ID");
+				double reimbursementAmount = rs.getDouble("REIMBURSEMENT_AMOUNT");
+				int reimbursementStatus = rs.getInt("REIMBURSEMENT_STATUS");
+				String reimbursementDescription = rs.getString("REIMBURSEMENT_DESCRIPTION");
+				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription);
+				reimList.add(re);
+			}
+			
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return reimList;
+	}
+
+	@Override
+	public List<Reimbursement> getApprovedReimbursementRequests(int empID) {
+		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
+		Reimbursement re = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM REIMBURSEMENT_REQUESTS WHERE EMPLOYEE_ID = ? AND REIMBURSEMENT_STATUS = 1";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empID);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			while (rs.next()) {
+				int reimbursementID = rs.getInt("REIMBURSEMENT_REQUEST_ID");
+				int employeeID = rs.getInt("EMPLOYEE_ID");
+				double reimbursementAmount = rs.getDouble("REIMBURSEMENT_AMOUNT");
+				int reimbursementStatus = rs.getInt("REIMBURSEMENT_STATUS");
+				String reimbursementDescription = rs.getString("REIMBURSEMENT_DESCRIPTION");
+				Blob reimbursementTicketImgBlob = rs.getBlob("REQUEST_TICKET_IMG");
+				InputStream reimbursementTicketImg = reimbursementTicketImgBlob.getBinaryStream();
+				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription, reimbursementTicketImg);
+				reimList.add(re);
+			}
+			
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return reimList;
+	}
+
+	@Override
+	public List<Reimbursement> getDeniedReimbursementRequests(int empID) {
+		List<Reimbursement> reimList = new ArrayList<Reimbursement>();
+		Reimbursement re = null;
+		PreparedStatement pstmt = null;
+
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+
+			// use a prepared statement
+			String sql = "SELECT * FROM REIMBURSEMENT_REQUESTS WHERE EMPLOYEE_ID = ? AND REIMBURSEMENT_STATUS = -1";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, empID);
+			ResultSet rs = pstmt.executeQuery();
+
+			// do something with result
+			while (rs.next()) {
+				int reimbursementID = rs.getInt("REIMBURSEMENT_REQUEST_ID");
+				int employeeID = rs.getInt("EMPLOYEE_ID");
+				double reimbursementAmount = rs.getDouble("REIMBURSEMENT_AMOUNT");
+				int reimbursementStatus = rs.getInt("REIMBURSEMENT_STATUS");
+				String reimbursementDescription = rs.getString("REIMBURSEMENT_DESCRIPTION");
+				Blob reimbursementTicketImgBlob = rs.getBlob("REQUEST_TICKET_IMG");
+				InputStream reimbursementTicketImg = reimbursementTicketImgBlob.getBinaryStream();
+				re = new Reimbursement(reimbursementID, employeeID, reimbursementAmount, reimbursementStatus, reimbursementDescription, reimbursementTicketImg);
+				reimList.add(re);
+			}
+			
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return reimList;
+	}
+	
+	@Override
+	public byte[] retrieveImage(int reimbursementID) {
+		PreparedStatement pstmt = null;
+		byte[] newObj = null;
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+			
+			// use a prepared statement
+			String sql = "SELECT REQUEST_TICKET_IMG FROM REIMBURSEMENT_REQUESTS WHERE REIMBURSEMENT_REQUEST_ID = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, reimbursementID);
+			ResultSet rs = pstmt.executeQuery();
+			
+			if (rs.next()) {
+				newObj = rs.getBytes("REQUEST_TICKET_IMG");
+			}
+			
+			con.close();
+			
+		} catch (SQLException e) {
+			System.out.println("Could not update database to decline ticket");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return newObj;
+	}
+
+	
 
 }

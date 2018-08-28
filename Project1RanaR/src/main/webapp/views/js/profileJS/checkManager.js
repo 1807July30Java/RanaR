@@ -46,6 +46,8 @@ function populateTableWithEmployees(xhr) {
             var table = document.getElementById("employeesUnderManager");
             
             var row = document.createElement("tr");
+            row.setAttribute("class", "clickable-row");
+            row.setAttribute("id", res[i].employeeID);
             table.appendChild(row);
             
             var employeeID = document.createElement("td");
@@ -64,8 +66,6 @@ function populateTableWithEmployees(xhr) {
 	
 	}
 };
-
-
 
 
 window.onload = function() {

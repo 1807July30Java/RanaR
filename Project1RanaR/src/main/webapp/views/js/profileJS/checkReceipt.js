@@ -32,6 +32,8 @@ function populateTableWithPendingReceipts(xhr) {
             reimbursementDescription.innerText = res[i].reimbursementDescription;
             
             var imgLink = document.createElement("a");
+            imgLink.setAttribute("class", "btn btn-primary");
+            imgLink.setAttribute("target", "_blank");
             imgLink.setAttribute("href", "http://localhost:8085/Project1RanaR/rifds?ticketId=" + res[i].reimbursementID);
             imgLink.innerHTML = "View Receipt";
             

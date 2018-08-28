@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet{
 		//grab params from request
 		String username = req.getParameter("username");
 		String password = req.getParameter("password");
+		int x = 1;
 		if (AuthenticationService.isValidUser(username, password)) {
 			EmployeeDAO empDao = new EmployeeDAOImpl();
 			Employee emp = new Employee();
@@ -48,7 +49,7 @@ public class LoginServlet extends HttpServlet{
 			session.setAttribute("isManager", emp.getIsManager());
 			session.setAttribute("id", emp.getEmployeeID());
 			session.setAttribute("email", emp.getEmployeeEmail());
-			session.setAttribute("employeeToView", null);
+			session.setAttribute("employeeToView", x);
 			session.setAttribute("problem", null);
 			
 			resp.sendRedirect("profile");

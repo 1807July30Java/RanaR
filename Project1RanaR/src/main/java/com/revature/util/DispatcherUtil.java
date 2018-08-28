@@ -8,7 +8,7 @@ public class DispatcherUtil {
 	private RetrieveEmployeesUnderManagerService reums = new RetrieveEmployeesUnderManagerService();
 	private ObjectMapper om = new ObjectMapper();
 
-	public String processGet(String entity, String get, String username) {
+	public String processGet(String entity, String get, String username, int employeeId) {
 		try {
 			if (entity.equals("employees")) {
 				if (get.equals("manager")) {
@@ -16,8 +16,9 @@ public class DispatcherUtil {
 				}
 			}
 			if(entity.equals("pending")) {
-					return om.writeValueAsString(reums.returnPendingRequests(Integer.parseInt(get)));
-				
+				if(get.equals("tickets")) {
+					return om.writeValueAsString(reums.returnPendingRequests(employeeId));
+				}
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();

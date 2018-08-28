@@ -48,6 +48,7 @@ public class LoginServlet extends HttpServlet{
 			session.setAttribute("isManager", emp.getIsManager());
 			session.setAttribute("id", emp.getEmployeeID());
 			session.setAttribute("email", emp.getEmployeeEmail());
+			session.setAttribute("employeeToView", null);
 			session.setAttribute("problem", null);
 			
 			resp.sendRedirect("profile");

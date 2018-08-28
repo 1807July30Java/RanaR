@@ -36,7 +36,7 @@ public class EmployeesUnderManagerServlet extends HttpServlet {
 			String get = request.getParameter("get");
 			if(entity != null && get != null) {
 				response.setContentType("application/json");
-				response.getWriter().write(dispatcher.processGet(entity, get, session.getAttribute("username").toString()));
+				response.getWriter().write(dispatcher.processGet(entity, get, session.getAttribute("username").toString(), (int)session.getAttribute("id")));
 			}
 		} else {
 			response.sendError(403,"You don't have permission to access this page.");

@@ -65,4 +65,34 @@
     <servlet-name>ReturnImageFromDbServlet</servlet-name>
     <url-pattern>/rifds</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetReimbursementTicketsServlet</display-name>
+    <servlet-name>GetReimbursementTicketsServlet</servlet-name>
+    <servlet-class>com.revature.servlets.GetReimbursementTicketsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetReimbursementTicketsServlet</servlet-name>
+    <url-pattern>/grts</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>displayReimbursementTicketServlet</display-name>
+    <servlet-name>displayReimbursementTicketServlet</servlet-name>
+    <servlet-class>com.revature.servlets.displayReimbursementTicketServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>displayReimbursementTicketServlet</servlet-name>
+    <url-pattern>/drts</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetTicketNonManagerServlet</display-name>
+    <servlet-name>GetTicketNonManagerServlet</servlet-name>
+    <servlet-class>com.revature.servlets.GetTicketNonManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTicketNonManagerServlet</servlet-name>
+    <url-pattern>/gtnms</url-pattern>
+  </servlet-mapping>
 </web-app>

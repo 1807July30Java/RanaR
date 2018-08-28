@@ -47,7 +47,6 @@ function populateTableWithEmployees(xhr) {
             
             var row = document.createElement("tr");
             row.setAttribute("class", "clickable-row");
-            row.setAttribute("id", res[i].employeeID);
             table.appendChild(row);
             
             var employeeID = document.createElement("td");
@@ -60,6 +59,7 @@ function populateTableWithEmployees(xhr) {
             lastName.innerText = res[i].lastName;
             
             table.append(employeeID, firstName, lastName);
+      
         }
 	} else {
 		window.location = "http://localhost:8085/Project1RanaR/login";
@@ -72,3 +72,5 @@ window.onload = function() {
 	sendAjaxGet("http://localhost:8085/Project1RanaR/session", populateUser);
 	sendAjaxGet("http://localhost:8085/Project1RanaR/eums?entity=employees&get=manager", populateTableWithEmployees);
 }
+
+

@@ -18,7 +18,14 @@ public class RetrieveEmployeesUnderManagerService {
 	}
 	
 	public List<Reimbursement> returnPendingRequests(int empID){
-		
 		return reimDao.getPendingReimbursementRequests(empID);
+	}
+	
+	public List<Reimbursement> returnApprovedRequests(int empID){
+		return reimDao.getApprovedReimbursementRequests(empID);
+	}
+	
+	public List<Reimbursement> returnRejectedRequests(int empID){
+		return reimDao.getDeniedReimbursementRequests(empID);
 	}
 }

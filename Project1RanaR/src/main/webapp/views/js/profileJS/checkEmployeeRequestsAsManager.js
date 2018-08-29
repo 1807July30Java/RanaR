@@ -31,13 +31,29 @@ function populateTableWithPendingReceipts(xhr) {
             var reimbursementDescription = document.createElement("td");
             reimbursementDescription.innerText = res[i].reimbursementDescription;
             
+            var viewImgButton = document.createElement("td");
             var imgLink = document.createElement("a");
             imgLink.setAttribute("class", "btn btn-primary");
             imgLink.setAttribute("target", "_blank");
             imgLink.setAttribute("href", "http://localhost:8085/Project1RanaR/rifds?ticketId=" + res[i].reimbursementID);
             imgLink.innerHTML = "View Receipt";
+            viewImgButton.appendChild(imgLink);
             
-            table.append(reimbursementId, reimbursementAmount, reimbursementDescription, imgLink);
+            var acceptButton = document.createElement("td");
+            var acceptLink = document.createElement("a");
+            acceptLink.setAttribute("class", "btn btn-primary");
+            acceptLink.setAttribute("href", "http://localhost:8085/Project1RanaR/approve?requestID=" + res[i].reimbursementID);
+            acceptLink.innerHTML = "Accept";
+            acceptButton.appendChild(acceptLink);
+            
+            var rejectButton = document.createElement("td");
+            var rejectLink = document.createElement("a");
+            rejectLink.setAttribute("class", "btn btn-primary");
+            rejectLink.setAttribute("href", "http://localhost:8085/Project1RanaR/reject?requestId=" + res[i].reimbursementID);
+            rejectLink.innerHTML = "Reject";
+            rejectButton.appendChild(rejectLink);
+            
+            table.append(reimbursementId, reimbursementAmount, reimbursementDescription, viewImgButton, acceptButton, rejectButton);
         }
 	} else {
 		window.location = "http://localhost:8085/Project1RanaR/login";

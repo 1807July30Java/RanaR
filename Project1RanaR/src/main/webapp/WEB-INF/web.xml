@@ -95,4 +95,24 @@
     <servlet-name>GetTicketNonManagerServlet</servlet-name>
     <url-pattern>/gtnms</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>approveRequest</display-name>
+    <servlet-name>approveRequest</servlet-name>
+    <servlet-class>com.revature.servlets.approveRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>approveRequest</servlet-name>
+    <url-pattern>/approve</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>rejectRequest</display-name>
+    <servlet-name>rejectRequest</servlet-name>
+    <servlet-class>com.revature.servlets.rejectRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>rejectRequest</servlet-name>
+    <url-pattern>/reject</url-pattern>
+  </servlet-mapping>
 </web-app>

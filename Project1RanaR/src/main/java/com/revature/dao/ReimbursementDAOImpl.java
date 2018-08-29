@@ -91,49 +91,48 @@ public class ReimbursementDAOImpl implements ReimbursementDAO {
 	}
 
 	@Override
-	public boolean approveReimbursementRequest(int reimbursementID) {
+	public void approveReimbursementRequest(int reimbursementID) {
 		PreparedStatement pstmt = null;
+		int one = 1;
 		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
 			
 			// use a prepared statement
-			String sql = "UPDATE REIMBURSEMENT_STATUS SET REIMBURSEMENT_STATUS = ? WHERE REIMBURSEMENT_REQUEST_ID = ?";
+			String sql = "UPDATE REIMBURSEMENT_REQUESTS SET REIMBURSEMENT_STATUS = ? WHERE REIMBURSEMENT_REQUEST_ID = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, 1);
+			pstmt.setInt(1, one);
 			pstmt.setInt(2, reimbursementID);
 
 			pstmt.executeUpdate();
 			con.close();
-			
-			return true;
+
 		} catch (SQLException e) {
-			System.out.println("Could not update approval of ticket");
+			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
 	}
 
 	@Override
-	public boolean declineReimbursementRequest(int reimbursementID) {
+	public void declineReimbursementRequest(int reimbursementID) {
 		PreparedStatement pstmt = null;
+		int negOne = -1;
 		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
 			
 			// use a prepared statement
-			String sql = "UPDATE REIMBURSEMENT_STATUS SET REIMBURSEMENT_STATUS = ? WHERE REIMBURSEMENT_REQUEST_ID = ?";
+			String sql = "UPDATE REIMBURSEMENT_REQUESTS SET REIMBURSEMENT_STATUS = ? WHERE REIMBURSEMENT_REQUEST_ID = ?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, -1);
+			pstmt.setInt(1, negOne);
 			pstmt.setInt(2, reimbursementID);
 
 			pstmt.executeUpdate();
 			con.close();
-			
-			return true;
+
 		} catch (SQLException e) {
 			System.out.println("Could not update database to decline ticket");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return false;
+
 	}
 
 	@Override

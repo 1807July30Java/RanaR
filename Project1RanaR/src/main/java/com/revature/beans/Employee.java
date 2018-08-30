@@ -11,6 +11,14 @@ public class Employee {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public Employee(int employeeID, String firstName, String lastName, int employeeManager) {
+		super();
+		this.employeeID = employeeID;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.employeeManager = employeeManager;
+	}
 
 	public Employee(int employeeID, String firstName, String lastName, String username, String password,
 			int employeeManager, int isManager, String employeeEmail) {

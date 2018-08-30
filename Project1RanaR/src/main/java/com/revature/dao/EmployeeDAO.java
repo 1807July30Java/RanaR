@@ -10,4 +10,5 @@ public interface EmployeeDAO {
 	public boolean isExistingEmployee(Employee e);
 	public Employee getEmployeeAccountByUserName(String empUsername);
 	public List<Employee> getAllEmployeesUnderManager(String managerUserName);
+	public List<Employee> getAllEmployeesAndTheirManagers();
 }

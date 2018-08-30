@@ -45,6 +45,11 @@ public class DispatcherUtil {
 					return om.writeValueAsString(reums.returnRejectedRequests(empToViewByManager));
 				}
 			}
+			if(entity.equals("all")) {
+				if(get.equals("employees")) {
+					return om.writeValueAsString(reums.returnAllEmpAndMang());
+				}
+			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}

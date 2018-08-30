@@ -115,4 +115,14 @@
     <servlet-name>rejectRequest</servlet-name>
     <url-pattern>/reject</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayAllEmployeesForManagerServlet</display-name>
+    <servlet-name>DisplayAllEmployeesForManagerServlet</servlet-name>
+    <servlet-class>com.revature.servlets.DisplayAllEmployeesForManagerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAllEmployeesForManagerServlet</servlet-name>
+    <url-pattern>/daefms</url-pattern>
+  </servlet-mapping>
 </web-app>

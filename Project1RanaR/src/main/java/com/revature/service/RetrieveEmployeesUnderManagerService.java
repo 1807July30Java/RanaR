@@ -28,4 +28,8 @@ public class RetrieveEmployeesUnderManagerService {
 	public List<Reimbursement> returnRejectedRequests(int empID){
 		return reimDao.getDeniedReimbursementRequests(empID);
 	}
+
+	public List<Employee> returnAllEmpAndMang() {
+		return eDao.getAllEmployeesAndTheirManagers();
+	}
 }

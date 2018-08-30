@@ -194,5 +194,33 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 
 		return eList;
 	}
+
+	@Override
+	public List<Employee> getAllEmployeesAndTheirManagers() {
+		List<Employee> ul = new ArrayList<Employee>();
+		try(Connection con = ConnectionUtil.getConnectionFromFile(filename)){
+			String sql = "SELECT EMPLOYEE_ID, FIRSTNAME, LASTNAME, EMPLOYEE_MANAGER FROM EMPLOYEE";
+			Statement statement = con.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
+			while (rs.next()){
+				int id = rs.getInt("EMPLOYEE_ID");
+				String firstName = rs.getString("FIRSTNAME");
+				String lastName = rs.getString("LASTNAME");
+				String employeeManager = rs.getString("EMPLOYEE_MANAGER");
+				if(employeeManager!=null) {
+					int empMang = Integer.parseInt(employeeManager);
+					ul.add(new Employee(id, firstName, lastName, empMang));
+				}
+				
+			}
+			con.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		return ul;
+	}
 	
 }

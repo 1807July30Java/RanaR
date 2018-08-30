@@ -125,4 +125,14 @@
     <servlet-name>DisplayAllEmployeesForManagerServlet</servlet-name>
     <url-pattern>/daefms</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateEmployeeInformationServlet</display-name>
+    <servlet-name>UpdateEmployeeInformationServlet</servlet-name>
+    <servlet-class>com.revature.servlets.UpdateEmployeeInformationServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateEmployeeInformationServlet</servlet-name>
+    <url-pattern>/ueis</url-pattern>
+  </servlet-mapping>
 </web-app>

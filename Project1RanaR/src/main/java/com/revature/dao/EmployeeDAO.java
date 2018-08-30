@@ -11,4 +11,5 @@ public interface EmployeeDAO {
 	public Employee getEmployeeAccountByUserName(String empUsername);
 	public List<Employee> getAllEmployeesUnderManager(String managerUserName);
 	public List<Employee> getAllEmployeesAndTheirManagers();
+	public boolean updateEmployeeInfo(String dbColumn, String value, int empId);
 }

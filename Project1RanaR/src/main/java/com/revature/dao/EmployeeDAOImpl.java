@@ -211,7 +211,6 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 					int empMang = Integer.parseInt(employeeManager);
 					ul.add(new Employee(id, firstName, lastName, empMang));
 				}
-				
 			}
 			con.close();
 		} catch (SQLException e) {
@@ -221,6 +220,32 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		}
 		
 		return ul;
+	}
+
+	@Override
+	public boolean updateEmployeeInfo(String dbColumn, String value, int empId) {
+		PreparedStatement pstmt;
+		if (value == null) {
+			return false;
+		}
+		String sql = "UPDATE EMPLOYEE SET " + dbColumn + " = ? WHERE EMPLOYEE_ID = ?";
+		try (Connection con = ConnectionUtil.getConnectionFromFile(filename)) {
+			
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, value);
+			pstmt.setInt(2, empId);
+			
+			if (pstmt.executeUpdate() > 0) {
+				return true;
+			}
+		} 
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 }

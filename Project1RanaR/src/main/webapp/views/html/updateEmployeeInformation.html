@@ -24,23 +24,22 @@
 	
 	<br>
 	<div class="container">
-		<form action="crrs" method="post" enctype="multipart/form-data">
-		  <div>
-		  	<label for="reimbursementAmount">Enter the amount you wish to be reimbursed:</label>
-		    <input type="number" name="reimbursementAmount" min="1">
-		    <br>
-		    <label for="reimbursementDesc">Reason for reimbursement:</label>
-		    <br>
-		    <input type="text" name="reimbursementDesc">
-		    <br>
-		    <label for="reimbursementReceipt">Choose image to upload</label>
-		    <br>
-		    <input type="file" id="reimbursementReceipt" name="reimbursementReceipt">
-		  </div>
-		  <div>
-		  	<br>
-		    <button>Submit</button>
-		  </div>
+		<form action="ueis" method="post">
+		  	<label for="reimbursementAmount">Update First Name to:</label>
+		    <input type="text" name="firstName">
+		    <button>Update</button>
+		</form>
+		
+		<form action="ueis" method="post">
+		  	<label for="reimbursementAmount">Update Last Name to:</label>
+		    <input type="text" name="lastName">
+		    <button>Update</button>
+		</form>
+		
+		<form action="ueis" method="post">
+		  	<label for="reimbursementAmount">Update Email to:</label>
+		    <input type="text" name="email">
+		    <button>Update</button>
 		</form>
 	</div>
 	

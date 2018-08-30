@@ -32,4 +32,8 @@ public class RetrieveEmployeesUnderManagerService {
 	public List<Employee> returnAllEmpAndMang() {
 		return eDao.getAllEmployeesAndTheirManagers();
 	}
+	
+	public boolean updateEmployeeInformation(String dbColumn, String value, int empId) {
+		return eDao.updateEmployeeInfo(dbColumn, value, empId);
+	}
 }
